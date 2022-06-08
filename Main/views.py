@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Customer,Product
+from .models import Customer,Product,Order
 
 # Pages / vues principales 
 
@@ -44,16 +44,23 @@ def products(request):
         my_product=Product.objects.all()
         context={"my_product": my_product}
         return render(request,'Main/products.html',context)
-    
-    
-    
-    
-    
-    
-    return render(request,'Main/products.html')
 
 def orders(request):
-    return render(request,'Main/orders.html')
+    if request.method=="POST":
+        order=Order()
+        order.customer=request.POST['order_customer']
+        order.product=request.POST['order_product']
+        order.total_price_HT=request.POST['order_total_price_HT']
+        order.total_price_TTC=request.POST['order_total_price_TTC']
+        order.status=request.POST['order_status']
+        order.Delivery_date_expected=request.POST['order_Delivery_date_expected']
+        order.Delivery_date_final=request.POST['order_Delivery_date_final']
+        order.save()
+        return redirect('/')
+    else:
+        my_order=Order.objects.all()
+        context={"my_order": my_order}
+        return render(request,'Main/orders.html',context)
 
 # Pages / vues - Création
 
@@ -75,4 +82,15 @@ def update_products(request):
     return render(request,'Main/products_form.html')
 
 def update_orders(request):
+    return render(request,'Main/orders_form.html')
+
+# Pages / vues - Delete
+
+def delete_customers(request):
+    return render(request,'Main/customers_form.html')
+
+def delete_products(request):
+    return render(request,'Main/products_form.html')
+
+def delete_orders(request):
     return render(request,'Main/orders_form.html')

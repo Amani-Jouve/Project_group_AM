@@ -1,20 +1,25 @@
-<!DOCTYPE html>
-<html lang="fr">
+{% extends "main/base.html" %} 
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech_Prime</title>
-</head>
-    
-<body>
+{% block content %} 
     <header>
         <h1> CREATE YOUR ORDER </h1>
     </header>
-    
-</body>
 
-<footer>
-    <strong>Copyright © 2022 <br></strong>
-</footer>
+    <form method='POST'>
+        {% csrf_token %}                                  
+        
+        <input name="order_customer" id="order_customer_input" placeholder="order_customer">
+        <input name="order_product" id="order_product_input" placeholder="order_product">
+        
+        <input name="order_total_price_HT" id="order_total_price_HT" placeholder="order_total_price_HT">
+        <input name="order_total_price_TTC" id="order_total_price_TTC_input" placeholder="order_total_price_TTC">
+        <input name="order_status" id="order_status_input" placeholder="order_status">
+        <input name="order_Delivery_date_expected" id="order_Delivery_date_expected_input" placeholder="order_Delivery_date_expected">
+        <input name="order_Delivery_date_final" id="order_Delivery_date_final_input" placeholder="order_Delivery_date_final">
+        <input type="submit" name="">
+
+    </form>
+    <br>
+    <br>
+    
+{% endblock content %}
