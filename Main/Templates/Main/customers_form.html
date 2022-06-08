@@ -1,20 +1,25 @@
-<!DOCTYPE html>
-<html lang="fr">
+{% extends "main/base.html" %} 
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech_Prime</title>
-</head>
-    
-<body>
+{% block content %} 
     <header>
         <h1> CREATE YOUR CUSTOMER </h1>
     </header>
-    
-</body>
 
-<footer>
-    <strong>Copyright © 2022 <br></strong>
-</footer>
+    <form method='POST'>
+        {% csrf_token %}                                  
+        <input name="customer_name" id="customer_name_input" placeholder="customer_name">
+        <input name="customer_type" id="customer_type_input" placeholder="customer_type">
+        <input name="customer_DoB" id="customer_DoB_input" placeholder="customer_DoB">
+        <input name="customer_gender" id="customer_gender_input" placeholder="customer_gender">
+        <input name="customer_email" id="customer_email_input" placeholder="customer_email">
+        <input name="customer_phone" id="customer_phone_input" placeholder="customer_phone">
+        <input name="customer_address" id="customer_address_input" placeholder="customer_adress">
+        <input name="customer_town" id="customer_town_input" placeholder="customer_town">
+        <input name="customer_region" id="customer_region_input" placeholder="customer_region">
+        <input type="submit" name="">
+
+    </form>
+    <br>
+    <br>
+    
+{% endblock content %}

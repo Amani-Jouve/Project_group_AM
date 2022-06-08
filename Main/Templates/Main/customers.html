@@ -1,20 +1,32 @@
-<!DOCTYPE html>
-<html lang="fr">
+{% extends "main/base.html" %} 
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech_Prime</title>
-</head>
-    
-<body>
+{% block content %} 
     <header>
-        <h1> Welcome to our Customers Page </h1>
+        <h1> Welcome to our customers </h1>
     </header>
     
-</body>
+   {% for my_customer_item in my_customer %}
+        <!--Affichage Listing des clients -->
+        {{my_customer_item.name}}
+        <br>
+        {{my_customer_item.customer_type}}
+        <br>
+        {{my_customer_item.DoB}}
+        <br>
+        {{my_customer_item.gender}}
+        <br>
+        {{my_customer_item.email}}
+        <br>
+        {{my_customer_item.phone}}
+        <br>
+        {{my_customer_item.address}}
+        <br>
+        {{my_customer_item.town}}
+        <br>
+        {{my_customer_item.region}}
+        <br>
+        <hr>
 
-<footer>
-    <strong>Copyright © 2022 <br></strong>
-</footer>
+    {% endfor %}
+    
+{% endblock content %}

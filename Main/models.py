@@ -38,8 +38,8 @@ class Product(models.Model):
     description=models.CharField(max_length=200, null=True)
     category=models.CharField(max_length=200, null=True,choices=CATEGORY_CHOICES)
     n_lot=models.CharField(max_length=200, null=True)
-    price_total_HT=models.FloatField(null=True)
-    price_total_TTC=models.FloatField(null=True)
+    price_pdt_HT=models.FloatField(null=True)
+    price_pdt_TTC=models.FloatField(null=True)
     commercial_margin=models.FloatField(null=True)
     stock_q=models.IntegerField(null=True)
     stock_security=models.IntegerField(null=True)
@@ -50,11 +50,12 @@ class Product(models.Model):
     
 class Order(models.Model):  
     """docstring fos Order"""
-    #customer=models.ForeignKey(Customer,null=True, on_delete=models.SET_NULL)
+    customer=models.ForeignKey(Customer,null=True, on_delete=models.SET_NULL)
     STATUS_CHOICES=(('en préparation','en préparation'),('expédié','expédié'),('livré','livré'),('retour client','retour client'))
-    #products=models.ManyToManyField(Product)
+    products=models.ManyToManyField(Product,related_name='re_name',db_column='name')
+#     p_ordered_HT=models.ManyToManyField(Product,related_name='re_price_pdt_HT',db_column='price_pdt_HT')
+#     p_ordered_TTC=models.ManyToManyField(Product,related_name='re_price_pdt_TTC',db_column='price_pdt_TTC')
     date_created=models.DateTimeField(auto_now_add=True, null=True)
-    quantity=models.FloatField(null=True)
     #transport_fees=models.FloatField(null=True)
     total_price_HT=models.FloatField(null=True)
     total_price_TTC=models.FloatField(null=True)
@@ -67,6 +68,13 @@ class Order(models.Model):
     
     def __str__(self):
         return self.name
+    
+# class Ordered_Product(models.Model):
+#     product=models.ForeignKey(Product,null=True, on_delete=models.SET_NULL)
+#     price_pdt_HT_O=models.ForeignKey(Product,null=True, through="price_pdt_HT", on_delete=models.SET_NULL)
+#     price_pdt_TTC_O=models.ForeignKey(Product,through="price_pdt_TTC",null=True, on_delete=models.SET_NULL)
+#     ordered_quantity=models.FloatField(null=True)
+    
     
     
     

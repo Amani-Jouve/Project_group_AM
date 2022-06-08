@@ -1,20 +1,35 @@
-<!DOCTYPE html>
-<html lang="fr">
+{% extends "main/base.html" %} 
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech_Prime</title>
-</head>
-    
-<body>
+{% block content %} 
     <header>
-        <h1> Welcome to Products Page </h1>
+        <h1> Welcome to products </h1>
     </header>
-    
-</body>
 
-<footer>
-    <strong>Copyright © 2022 <br></strong>
-</footer>
+    {% for my_product_item in my_product %}
+        <!--Affichage Listing des clients -->
+        {{my_product_item.name}}
+        <br>
+        {{my_product_item.description}}
+        <br>
+        {{my_product_item.category}}
+        <br>
+        {{my_product_item.n_lot}}
+        <br>
+        {{my_product_item.price_pdt_HT}}
+        <br>
+        {{my_product_item.price_pdt_TTC}}
+        <br>
+        {{my_product_item.commercial_margin}}
+        <br>
+        {{my_product_item.stock_q}}
+        <br>
+        {{my_product_item.stock_security}}
+        <br>
+        {{my_product_item.stock_status}}
+        <br>
+        <hr>
+
+    {% endfor %}
+    
+    
+{% endblock content %}
